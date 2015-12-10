@@ -1,0 +1,294 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>buswx</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/FrozenUI/1.3.0/css/frozen.css" />
+    <link rel="stylesheet" href="http://7xp0c4.com2.z0.glb.qiniucdn.com/iconfont-1.01.css" />
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="ui-loading-block show" id="loading">
+        <div class="ui-loading-cnt">
+            <i class="ui-loading-bright"></i>
+            <p>正在加载中...</p>
+        </div>
+    </div>
+    <div id="myMenu" class="animated hide">
+        <div class="flipInX animated">
+            <i class="tab iconfont icon-sortup"></i>
+            <ul>
+                <li><a href="#order"><i class="iconfont icon-order"></i>我的订单</a></li>
+                <li><a href="#person"><i class="iconfont icon-info"></i>个人信息</a></li>
+            </ul>
+        </div>
+    </div>
+        <div id="selecter" class="fadeIn animated">
+            <header class="ui-header ui-header-positive">
+                <!--<i class="ui-icon-return" onclick="history.back()"></i>-->
+                <h1>校车订票</h1>
+                <a class="menu-switch"><i class="iconfont icon-geren"></i></a>
+            </header>
+            
+            <div class="select-form">
+                <div class="ui-row-flex ui-whitespace select-box ui-border-b">
+                    <div class="ui-col ui-col-2">
+                        <div>出发</div>
+                        <div class="select-station">出发站</div>
+                    </div>
+                    <div class="ui-col">
+                        <i class="iconfont icon-change"></i>
+                    </div>
+                    <div class="ui-col ui-col-2">
+                        <div>到达</div>
+                        <div class="select-station">到达站</div>
+                    </div>
+                </div>
+                <div class="ui-panel select-date ui-border-b">
+                    <h2 class="ui-arrowlink">
+                        <span>出发日期</span>
+                        <span class="ui-panel-title-tips"></span>
+                    </h2>
+                </div>
+            </div>
+            <script type="text/template" id="selectFormTemplate">
+                <div class="ui-row-flex ui-whitespace select-box ui-border-b">
+                    <div id="selectStart" class="ui-col ui-col-2">
+                        <div>出发</div>
+                        <div class="select-station"><%= station[0].name %></div>
+                    </div>
+                    <div class="ui-col">
+                        <i class="iconfont icon-change" id="selectChange"></i>
+                    </div>
+                    <div id="selectEnd" class="ui-col ui-col-2">
+                        <div>到达</div>
+                        <div class="select-station"><%= station[1].name %></div>
+                    </div>
+                </div>
+                <div class="ui-panel select-date ui-border-b" id="selectDate">
+                    <h2 class="ui-arrowlink">
+                        <span>出发日期</span>
+                        <span class="ui-panel-title-tips"><%= date.show %></span>
+                    </h2>
+                </div>
+                <div class="select-sub">
+                    <button id="selectSub">
+                        查询车票
+                    </button>
+                </div>
+            </script>
+            
+            
+            <div id="selectBox" class="ui-actionsheet hide animated">  
+				<div class="ui-actionsheet-cnt">
+                	<div id="selectScroller">
+                        <ul class="select-list">
+                            <li><a>今天</a></li>
+                            <li><a>今天</a></li>
+                        </ul>
+                        <script type="text/template" id="selectStationTemplate">
+                            <% for(var i=0;i<list.models.length;i++){%>
+                            <li data-real="<%= list.models[i].get('name') %>"><a><%= list.models[i].get('name') %></a></li>
+                            <%}%>
+                        </script>
+                    </div>
+					<button id="selectBoxClose">取消</button> 
+				</div>         
+			</div>
+        </div>
+        <section id="person" class="fadeInRight animated hide">
+            <header class="ui-header ui-header-positive">
+                <a onclick="history.go(-1)" class="ui-icon-return"></a>
+                <h1>个人信息</h1>
+                <!--<a id="menuSwitch"><i class="iconfont icon-geren"></i></a>-->
+            </header>
+            <div id="userInfo">
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="#">姓名</label>
+                    <input type="text" value="445331199401055317">
+                </div>
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="#">学号</label>
+                    <input type="text" value="445331199401055317">
+                </div>
+            </div>
+            <script type="text/template" id="userTemplate">
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="userNickName">姓名</label>
+                    <input id="userNickName" type="text" value="<%= name %>">
+                </div>
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="userNumber">学号</label>
+                    <input id="userNumber" type="text" value="<%= number %>">
+                </div>
+                <div class="select-sub">
+                    <button id="userSave">
+                        保存信息
+                    </button>
+                </div>
+                
+                
+            </script>
+        </section>
+        <section id="order" class="fadeInRight animated hide">
+            <header class="ui-header ui-header-positive">
+                <a onclick="history.go(-1)" class="ui-icon-return"></a>
+                <h1>我的订单</h1>
+                <!--<a id="menuSwitch"><i class="iconfont icon-geren"></i></a>-->
+            </header>
+            <div id="orderList">
+            <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
+                <li class="ui-border-t">
+                    <div class="ui-list-busicon">
+                        <i class="iconfont icon-bus4"></i>
+                    </div>
+                    <div class="ui-list-info">
+                        <h4 class="ui-nowrap">峨眉校区 - 成都校区</h4>
+                        <p class="ui-nowrap">出发：2015-12-12 12:12</p>
+                    </div>
+                    <div class="ui-list-ticket">
+                        <div>￥88.00</div>
+                        <div class="successed"></div>
+                    </div>
+                </li>
+                <li class="ui-border-t">
+                    <div class="ui-list-busicon">
+                        <i class="iconfont icon-bus4"></i>
+                    </div>
+                    <div class="ui-list-info">
+                        <h4 class="ui-nowrap">峨眉校区 - 成都校区</h4>
+                        <p class="ui-nowrap">出发：2015-12-12 12:12</p>
+                    </div>
+                    <div class="ui-list-ticket">
+                        <div>￥88.00</div>
+                        <div class="finished"></div>
+                    </div>
+                </li>
+                <li class="ui-border-t">
+                    <div class="ui-list-busicon">
+                        <i class="iconfont icon-bus4"></i>
+                    </div>
+                    <div class="ui-list-info">
+                        <h4 class="ui-nowrap">峨眉校区 - 成都校区</h4>
+                        <p class="ui-nowrap">出发：2015-12-12 12:12</p>
+                    </div>
+                    <div class="ui-list-ticket">
+                        <div class="timeout"></div>
+                    </div>
+                </li>
+            </ul>
+            </div>
+            <script type="text/template" id="orderListTemplate">
+                <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
+                    <% for(var i=0;i<list.length;i++){ %>
+                    <li class="ui-border-t">
+                        <div class="ui-list-busicon">
+                            <i class="iconfont icon-bus4"></i>
+                        </div>
+                        <div class="ui-list-info">
+                            <h4 class="ui-nowrap"><% print(list[i].get('start') + ' - ' + list[i].get('end')) %> - 成都校区</h4>
+                            <p class="ui-nowrap">出发：<%= list[i].get('date') %></p>
+                        </div>
+                        <div class="ui-list-ticket">
+                            <div>￥<%= list[i].get('price') %></div>
+                            <div class="<% if(list[i].get('status') == 0) print('successed');else if(list[i].get('status') == 1) print('finished');else print('timeout');%>"></div>
+                        </div>
+                    </li>
+                    <%}%>
+                </ul>
+            </script>
+        </section>
+        <section id="selectResult" class="fadeInRight animated hide">
+            <header class="ui-header ui-header-positive">
+                <a onclick="history.go(-1)" class="ui-icon-return"></a>
+                <h1>查询车票</h1>
+                <a class="menu-switch"><i class="iconfont icon-geren"></i></a>
+            </header>
+            <div id="selectList">
+                <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
+                    <li class="ui-border-t">
+                        <div class="ui-list-time">
+                            06:58<i>始</i><br><small>18:00</small><i>达</i>
+                        </div>
+                        <div class="ui-list-info">
+                            <h4 class="ui-nowrap">峨眉校区</h4>
+                            <p class="ui-nowrap">成都校区</p>
+                        </div>
+                        <div class="ui-list-ticket">
+                            <div>￥88.00</div>
+                            <div>100张</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <script type="text/template" id="selectResultTemplate">
+                <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
+                    <% for(var i=0;i<list.length;i++){ %>
+                    <li class="ui-border-t">
+                        <div class="ui-list-time">
+                            <%=list[i].get('startTime')%><i>始</i><br><small><%=list[i].get('endTime')%></small><i>达</i>
+                        </div>
+                        <div class="ui-list-info">
+                            <h4 class="ui-nowrap"><%=list[i].get('startStation')%></h4>
+                            <p class="ui-nowrap"><%=list[i].get('endStation')%></p>
+                        </div>
+                        <div class="ui-list-ticket">
+                            <div>￥<%=list[i].get('price')%></div>
+                            <div><%=list[i].get('count')%>张</div>
+                        </div>
+                    </li>
+                    <%}%>
+                </ul>
+            </script>
+        </section>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/zepto/zepto.js"></script>
+    <script src="/bower_components/frozenui/dist/js/frozen.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/backbone/backbone.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/plugins.js -->
+
+    <!-- endbuild -->
+    
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/init.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/Router.js"></script>
+    <script src="scripts/model/Station.js"></script>
+    <script src="scripts/views/StationSelect.js"></script>
+    <script src="scripts/model/User.js"></script>
+    <script src="scripts/views/Person.js"></script>
+    <script src="scripts/model/Order.js"></script>
+    <script src="scripts/views/Order.js"></script>
+    <script src="scripts/model/Ticket.js"></script>
+    <script src="scripts/views/Select.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

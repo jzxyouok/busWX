@@ -1,0 +1,322 @@
+body{
+	font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif
+}
+section{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;right:0;
+	background:#f8f8f8;
+	padding-top:45px;
+	&.show{
+		z-index:2;
+		display:block;
+	}
+	&.hide{
+		z-index:1;
+		display:none;
+	}
+}
+section.animated{
+    -webkit-animation-duration: .6s;
+    animation-duration: .6s;
+}
+.ui-header{
+	background-color: #228feb;
+}
+#myMenu{
+    position: fixed;
+    top: 44px;
+	bottom:0;
+    left: 0;
+    right:0;
+    z-index: 9999;
+	background: rgba(0, 0, 0, 0.4);
+	ul{
+		background:rgb(239,239,239);
+		li{
+			
+			&:active{
+				background:rgb(220,220,220);
+			}
+			a{
+				display:block;
+				color:#333;
+				line-height: 44px;
+				height: 44px;
+				box-sizing:border-box;
+				margin:0 15px;
+				background-position: left top;
+				background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#ddd),to(#ddd));
+				background-repeat: repeat-x;
+				-webkit-background-size: 100% 1px;
+			}
+			i{
+				font-size:21px;
+				letter-spacing:8px;
+				color:#888;
+			}
+		}
+	}
+	i.tab{
+		position:absolute;
+		right:12px;
+		top:-17px;
+		font-size:20px;
+		color:rgb(239,239,239);
+	}
+	&.hide{
+		display:none;
+	}
+	&.fadeOut{
+		-webkit-animation-duration: .3s;
+    	animation-duration: .3s;
+	}
+}
+.ui-header{
+	a.menu-switch{
+		position: absolute;
+		right: 0;
+		top:0;
+		padding: 0 10px;
+		i{
+			font-size: 25px;
+		}
+	}
+}
+#selecter{
+	padding-top:45px;
+	.select-form{
+		background-color: #fff;
+		.select-box{
+			font-size: 14px;
+			color: #777;
+			padding: 0;
+			padding-top: 20px;
+			margin:0 15px;
+			width: auto;
+			&>div:nth-of-type(1){
+				width:40%;
+			}
+			&>div:nth-of-type(2){
+				text-align: center;
+				width:20%;
+				i{
+					display: block;
+					margin: 10px auto;
+					width: 30px;
+					height: 30px;
+					line-height: 30px;
+					font-size: 20px;
+					color: #2fcc71;
+					border:1px solid #2fcc71;
+					border-radius: 22px;
+					
+				}
+			}
+			&>div:nth-of-type(3){
+				text-align: right;
+				width:40%;
+			}
+			#selectStart:active,#selectEnd:active,#selectChange:active{
+				background:rgba(0,0,0,.05);
+			}
+			#selectStart.animated,#selectEnd.animated{
+				-webkit-animation-duration: .1s;
+    			animation-duration: .1s;
+			}
+			.select-station{
+				padding-top:5px;
+				padding-bottom: 10px;
+				font-size: 20px;
+				color:#111;
+				
+			}
+			
+		}
+		.select-date {
+			margin-bottom: 0;
+			padding-top:0;
+			h2{
+				font-size: 14px;
+				color: #777;
+				.ui-panel-title-tips{
+					font-size: 15px;
+					color: #111;
+				}
+			}
+			&:active{
+				background:rgba(0,0,0,.05);
+			}
+		}
+	}
+	.select-sub{
+		padding: 15px;
+		background-color: #f8f8f8;
+		button{
+			background-color: #228feb;
+			color: #fff;
+			text-align: center;
+			height: 44px;
+			line-height: 44px;
+			display: block;
+			width: 100%;
+			border-radius: 5px;
+			&:active{
+				background:#2281eb;
+			}
+		}
+	}
+	#selectBox{
+		&.animated{
+			-webkit-animation-duration: .3s;
+    		animation-duration: .3s;
+		}
+		#selectScroller{
+			max-height: 250px;
+			overflow:hidden;
+			.select-list{
+				li a{
+					display: block;
+					background: rgba(255,255,255,.84);
+					background-position: left top;
+					background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+					background-repeat: repeat-x;
+					-webkit-background-size: 100% 1px;
+				}
+				li:active{
+					opacity: 0.84;
+				}
+			}
+		}
+		button,.select-list li a{
+			font-size: 16px;
+			box-sizing: border-box;
+			line-height: 40px;
+			height: 40px;
+			color: #333;
+		}
+	}
+}
+#person{
+	.select-sub{
+		padding: 15px;
+		background-color: #f8f8f8;
+		button{
+			background-color: #228feb;
+			color: #fff;
+			text-align: center;
+			height: 44px;
+			line-height: 44px;
+			display: block;
+			width: 100%;
+			border-radius: 5px;
+			&:active{
+				background:#2272eb;
+			}
+		}
+	}	
+}
+#order{
+	li{
+		padding-left:10px;
+		margin-left:0;
+		box-align:center ;
+		-webkit-box-align:center ;
+    	align-items:center ;
+
+		.ui-list-busicon{
+			width:35px;
+			i{
+				font-size:25px;
+				color:#228feb;
+			}
+		}
+		.ui-list-info{
+			p{
+				color:#888;
+				font-size:14px;
+			}
+		}
+		.ui-list-ticket{
+			width:60px;
+			padding-right:10px;
+			text-align:right;
+			color:#ff3b2f;
+			div:nth-of-type(1){
+				font-size:14px;
+			}
+			div:nth-of-type(2){
+				font-size:12px;
+			}
+			.successed{
+				color:#2fcc71;
+				&::before{content:'订票成功';}
+			}
+			.finished{
+				color:#3598dc;
+				&::before{content:'已领票';}
+			}
+			.timeout{
+				color:#8f8e94;
+				&::before{content:'自动失效';}
+			}
+		}
+	}
+	#orderList{
+		overflow:hidden;	
+	}
+}
+#selectResult{
+	#selectList{
+		overflow:hidden;
+		li{
+			margin-left:0;
+			.ui-list-time{	
+				font-size:17px;
+				font-weight:bold;
+				padding:10px;
+				text-align:right;
+				i{
+					display:inline-block;
+					margin-left:10px;
+					position:relative;top:-2px;
+					font-size:12px;
+					text-align:center;
+					width:16px;
+					height:16px;
+					line-height:16px;
+					border-radius:7px;
+					color:#fff;
+					font-weight:normal;
+					background-color:#228feb;
+					&:nth-of-type(2){
+						background-color:#5fdc79;
+					}
+				}
+			}
+			.ui-list-info{
+				h4{
+					font-weight:bold;
+					font-size:18px;	
+				}
+				p{
+					font-size:.9em;
+					color:#888;	
+				}
+			}
+			.ui-list-ticket{
+				padding:10px 10px 10px 0;
+				color:#ff3b2f;
+				text-align:right;
+				div:nth-of-type(1){
+					font-size:14px;
+				}
+				div:nth-of-type(2){
+					font-size:12px;
+					color:#888;
+				}
+			}
+		}
+	}
+}

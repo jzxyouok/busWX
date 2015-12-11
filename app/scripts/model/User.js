@@ -1,7 +1,12 @@
 App.Models.UserModel = Backbone.Model.extend({
     defaults: {
-        name: '',
-		number:''
+        p1:'',
+        p2:'',
+        p3:'',
+        pname: '',
+		psid:'',
+        ptel:'',
+        openid:'aaa'
     }
 });
 App.Collections.UserList = Backbone.Collection.extend({

@@ -150,23 +150,6 @@ section.animated{
 			}
 		}
 	}
-	.select-sub{
-		padding: 15px;
-		background-color: #f8f8f8;
-		button{
-			background-color: #228feb;
-			color: #fff;
-			text-align: center;
-			height: 44px;
-			line-height: 44px;
-			display: block;
-			width: 100%;
-			border-radius: 5px;
-			&:active{
-				background:#2281eb;
-			}
-		}
-	}
 	#selectBox{
 		&.animated{
 			-webkit-animation-duration: .3s;
@@ -199,23 +182,27 @@ section.animated{
 	}
 }
 #person{
-	.select-sub{
-		padding: 15px;
-		background-color: #f8f8f8;
-		button{
-			background-color: #228feb;
-			color: #fff;
-			text-align: center;
-			height: 44px;
-			line-height: 44px;
-			display: block;
-			width: 100%;
-			border-radius: 5px;
-			&:active{
-				background:#2272eb;
-			}
+	#userInfo{padding-top:15px;}
+}
+.sub-box{
+	padding: 15px;
+	background-color: #f8f8f8;
+	button{
+		background-color: #228feb;
+		color: #fff;
+		text-align: center;
+		height: 44px;
+		line-height: 44px;
+		display: block;
+		width: 100%;
+		border-radius: 5px;
+		&:active{
+			background:#2272eb;
 		}
-	}	
+	}
+}	
+.ui-form-item{
+	background-color:#fff;
 }
 #order{
 	li{
@@ -272,6 +259,10 @@ section.animated{
 		overflow:hidden;
 		li{
 			margin-left:0;
+			&:active{
+				margin-left:0;
+				padding-left:0;
+			}
 			.ui-list-time{	
 				font-size:17px;
 				font-weight:bold;
@@ -318,5 +309,82 @@ section.animated{
 				}
 			}
 		}
+	}
+}
+#book,#detail{
+	.ticket-info{
+		background-color:#228feb;
+		color:#fff;
+		text-align:center;
+		.ticket-station{
+			padding:10px 0;
+			.ui-col-2{
+				font-weight:bold;
+				font-size:20px;
+			}
+			.ui-col{
+				i{
+					line-height:30px;
+					font-size:35px;
+				}
+			}
+		}
+		.ticket-time{
+			font-size:25px;
+			height:25px;
+			line-height:25px;
+			font-weight:bold;
+		}
+		.ticket-date{
+			padding:10px 0;
+		}
+	}
+	.user-info{
+		margin-top:15px;	
+	}
+}
+#detail{
+	.ticket-number{
+		background-repeat: repeat-x;
+    	-webkit-background-size: 100% 1px;
+		background-position: left top;
+    	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #ffffff), to(#ffffff));
+		margin:0 10px;
+		padding:10px 0;
+		color:#fbeba9;
+	}
+	.order-info{
+		margin-top:15px;
+		background-color:#fff;
+		ul{
+			margin:0 10px;
+			padding:15px 0;
+		}
+		a{
+			display:block;
+			padding:10px 0;
+			text-align:center;
+			i{
+				font-size:20px;	
+			}
+		}
+	}
+	.user-info{
+		background-color:#fff;
+		display:box;
+		display: -webkit-box;
+		display:flex;	
+		display: -webkit-flex;
+		padding:10px;
+		.user-info-tip{
+			width:95px;
+		}
+		.user-info-content{
+			
+		}
+	}
+	.ui-btn-lg{
+		font-size:16px;	
+		
 	}
 }

@@ -1,5 +1,5 @@
 'use strict';
-var APIServerHost='http://120.26.48.150:8089/';//http://pay.houqinbao.com:8089/';
+var APIServerHost='http://192.168.18.116:8080/Geese_BUS';
 var App = {
     Models: {},
     Routers: {},
@@ -17,16 +17,9 @@ var App = {
     },
     URL:{
     	//Token:'http://121.40.49.110/Token',
-        Token:'http://120.26.48.150:82/Geese.Houqinbao.Auth/Token',
-    	ChangeOrder:APIServerHost + 'api/order/waitpayconfirm?orderNo=',
-    	SFB:APIServerHost + 'api/studentflat/sfb/',
-    	FLAT:APIServerHost + 'api/studentflat/la/',
-    	HISTORY:APIServerHost + 'api/order/ordersofroom/',
-    	WPP:APIServerHost + 'api/order/wpp',
-    	MODE:APIServerHost + 'api/studentflat/billingmode/',
-    	UNPAID:APIServerHost + 'api/bill/unpayed/',
-    	UNPAIDHIS:APIServerHost + 'api/bill/unpayedhistory/',
-    	USERFLAT:APIServerHost + 'api/studentflat/sf',
+        //Token:'http://120.26.48.150:82/Geese.Houqinbao.Auth/Token',
+    	getUser:APIServerHost + '/user/findByOpenid/aaa.do',
+
     	
     }
 };
@@ -56,3 +49,4 @@ Date.prototype.CHWeek = function(){
         case 6: return '星期六';
     }
 }
+//alert($.ajaxJSONP);

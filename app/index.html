@@ -16,7 +16,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/FrozenUI/1.3.0/css/frozen.css" />
-    <link rel="stylesheet" href="http://7xp0c4.com2.z0.glb.qiniucdn.com/iconfont-1.01.css" />
+    <link rel="stylesheet" href="http://7xp0c4.com2.z0.glb.qiniucdn.com/iconfont-1.02.css" />
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -92,7 +92,7 @@
                         <span class="ui-panel-title-tips"><%= date.show %></span>
                     </h2>
                 </div>
-                <div class="select-sub">
+                <div class="sub-box">
                     <button id="selectSub">
                         查询车票
                     </button>
@@ -124,31 +124,37 @@
                 <!--<a id="menuSwitch"><i class="iconfont icon-geren"></i></a>-->
             </header>
             <div id="userInfo">
-                <div class="ui-form-item ui-form-item-show ui-border-b">
+                <div class="ui-form-item ui-form-item-show ui-border-tb">
                     <label for="#">姓名</label>
-                    <input type="text" value="445331199401055317">
+                    <input type="text" value="">
                 </div>
                 <div class="ui-form-item ui-form-item-show ui-border-b">
-                    <label for="#">学号</label>
-                    <input type="text" value="445331199401055317">
+                    <label for="#">学工号</label>
+                    <input type="text" value="">
+                </div>
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="#">电话</label>
+                    <input type="text" value="">
                 </div>
             </div>
             <script type="text/template" id="userTemplate">
-                <div class="ui-form-item ui-form-item-show ui-border-b">
+                <div class="ui-form-item ui-form-item-show ui-border-tb">
                     <label for="userNickName">姓名</label>
                     <input id="userNickName" type="text" value="<%= name %>">
                 </div>
                 <div class="ui-form-item ui-form-item-show ui-border-b">
-                    <label for="userNumber">学号</label>
+                    <label for="userNumber">学工号</label>
                     <input id="userNumber" type="text" value="<%= number %>">
                 </div>
-                <div class="select-sub">
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="userNumber">电话</label>
+                    <input id="userPhone" type="text" value="<%= phone %>">
+                </div>
+                <div class="sub-box">
                     <button id="userSave">
                         保存信息
                     </button>
                 </div>
-                
-                
             </script>
         </section>
         <section id="order" class="fadeInRight animated hide">
@@ -202,12 +208,12 @@
             <script type="text/template" id="orderListTemplate">
                 <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
                     <% for(var i=0;i<list.length;i++){ %>
-                    <li class="ui-border-t">
+                    <li class="ui-border-t" data-index="<%=i%>">
                         <div class="ui-list-busicon">
                             <i class="iconfont icon-bus4"></i>
                         </div>
                         <div class="ui-list-info">
-                            <h4 class="ui-nowrap"><% print(list[i].get('start') + ' - ' + list[i].get('end')) %> - 成都校区</h4>
+                            <h4 class="ui-nowrap"><% print(list[i].get('startStation') + ' - ' + list[i].get('endStation')) %></h4>
                             <p class="ui-nowrap">出发：<%= list[i].get('date') %></p>
                         </div>
                         <div class="ui-list-ticket">
@@ -245,7 +251,7 @@
             <script type="text/template" id="selectResultTemplate">
                 <ul class="ui-list ui-list-link ui-list-active ui-border-tb">
                     <% for(var i=0;i<list.length;i++){ %>
-                    <li class="ui-border-t">
+                    <li class="ui-border-t" data-index='<%=i%>'>
                         <div class="ui-list-time">
                             <%=list[i].get('startTime')%><i>始</i><br><small><%=list[i].get('endTime')%></small><i>达</i>
                         </div>
@@ -262,6 +268,220 @@
                 </ul>
             </script>
         </section>
+        <section id="book" class="fadeInRight animated hide">
+            <header class="ui-header ui-header-positive">
+                <a onclick="history.go(-1)" class="ui-icon-return"></a>
+                <h1>填写订单</h1>
+                <a class="menu-switch"><i class="iconfont icon-geren"></i></a>
+            </header>
+            <div id="bookInfo">
+                <div class="ticket-info">
+                    <div class="ui-row-flex ui-whitespace ticket-station">
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station">成都校区</div>
+                        </div>
+                        <div class="ui-col">
+                            <i class="iconfont icon-bus2"></i>
+                        </div>
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station">峨眉校区</div>
+                        </div>
+                    </div>
+                    <div class="ticket-time">
+                        08 : 00
+                    </div>
+                    <div class="ticket-date">
+                        12-08 周二
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="ui-form-item ui-form-item-show ui-border-tb">
+                        <label for="#">姓名</label>
+                        <input type="text" value="">
+                    </div>
+                    <div class="ui-form-item ui-form-item-show ui-border-b">
+                        <label for="#">学工号</label>
+                        <input type="text" value="">
+                    </div>
+                    <div class="ui-form-item ui-form-item-show ui-border-b">
+                        <label for="#">电话</label>
+                        <input type="text" value="">
+                    </div>
+                </div>
+            </div>
+            <script type="text/template" id="bookTemplate">
+                <div class="ticket-info">
+                    <div class="ui-row-flex ui-whitespace ticket-station">
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station"><%= ticket.get('startStation') %></div>
+                        </div>
+                        <div class="ui-col">
+                            <i class="iconfont icon-bus2"></i>
+                        </div>
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station"><%= ticket.get('endStation') %></div>
+                        </div>
+                    </div>
+                    <div class="ticket-time">
+                        <% print(ticket.get('startTime').slice(0,2)) %> : <% print(ticket.get('startTime').slice(3,5)) %>
+                    </div>
+                    <div class="ticket-date">
+                        <%= date %>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="ui-form-item ui-form-item-show ui-border-tb">
+                        <label for="#">姓名</label>
+                        <input type="text" value="<%= user.name %>">
+                    </div>
+                    <div class="ui-form-item ui-form-item-show ui-border-b">
+                        <label for="#">学工号</label>
+                        <input type="text" value="<%= user.number %>">
+                    </div>
+                    <div class="ui-form-item ui-form-item-show ui-border-b">
+                        <label for="#">电话</label>
+                        <input type="text" value="<%= user.phone %>">
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <button id="ticketSave">
+                        确认预订
+                    </button>
+                </div>
+                <div id="bookDialog" class="ui-dialog hide">
+                    <div class="ui-dialog-cnt">
+                        <header class="ui-dialog-hd ui-border-b">
+                            <h3>确认订票</h3>
+                        </header>
+                        <div class="ui-dialog-bd">
+                            <div></div>
+                        </div>
+                        <div class="ui-dialog-ft">
+                            <button id="bookCancel" type="button" data-role="button">取消</button>
+                            <button id="bookSave" type="button" data-role="button">确定</button>
+                        </div>
+                    </div>        
+                </div>
+                <div id="orderDialog" class="ui-dialog hide">
+                    <div class="ui-dialog-cnt">
+                        <header class="ui-dialog-hd ui-border-b">
+                            <h3>确认订票</h3>
+                        </header>
+                        <div class="ui-dialog-bd">
+                            <div></div>
+                        </div>
+                        <div class="ui-dialog-ft">
+                            <button id="orderOpen" type="button" data-role="button">查看订单详情</button>
+                        </div>
+                    </div>        
+                </div>
+            </script>
+        </section>
+        <section id="detail" class="fadeInRight animated hide">
+            <header class="ui-header ui-header-positive">
+                <a onclick="history.go(-1)" class="ui-icon-return"></a>
+                <h1>订单详情</h1>
+            </header>
+            <div id="orderInfo">
+                <div class="ticket-info">
+                    <div class="ui-row-flex ui-whitespace ticket-station">
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station">成都校区</div>
+                        </div>
+                        <div class="ui-col">
+                            <i class="iconfont icon-bus2"></i>
+                        </div>
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station">峨眉校区</div>
+                        </div>
+                    </div>
+                    <div class="ticket-time">
+                        08 : 00
+                    </div>
+                    <div class="ticket-date">
+                        12-08 周二
+                    </div>
+                    <div class="ticket-number">
+                        取票号：E321654
+                    </div>
+                </div>
+                <div class="order-info ui-border-tb">
+                    <ul class="ui-border-b">
+                        <li>卖家：***************后勤公司</li>
+                        <li>订单号：123123123123123</li>
+                    </ul>
+                    <a class="order-tell">
+                        <i class="iconfont icon-phone2"></i> 拨打电话
+                    </a>
+                </div>
+                <div class="user-info ui-border-tb">
+                    <div class="user-info-tip">
+                        乘车人
+                    </div>
+                    <div class="user-info-content">
+                        王同学<br>
+                        12110013122<br>
+                        15658717777
+                    </div>
+                </div>
+                <div class="ui-btn-wrap">
+                    <button class="ui-btn-lg">
+                        取消预定
+                    </button>
+                </div>
+            </div>
+            <script type="text/template" id="detailTemplate">
+                <div class="ticket-info">
+                    <div class="ui-row-flex ui-whitespace ticket-station">
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station"><%= order.get('startStation') %></div>
+                        </div>
+                        <div class="ui-col">
+                            <i class="iconfont icon-bus2"></i>
+                        </div>
+                        <div class="ui-col ui-col-2">
+                            <div class="select-station"><%= order.get('endStation') %></div>
+                        </div>
+                    </div>
+                    <div class="ticket-time">
+                        <% print(startTime.slice(0,2)) %> : <% print(startTime.slice(3,5)) %>
+                    </div>
+                    <div class="ticket-date">
+                        <%= date %>
+                    </div>
+                    <div class="ticket-number">
+                        取票号：<%= order.get('number') %>
+                    </div>
+                </div>
+                <div class="order-info ui-border-tb">
+                    <ul class="ui-border-b">
+                        <li>卖家：<%= order.get('company') %></li>
+                        <li>订单号：<%= order.get('code') %></li>
+                    </ul>
+                    <a class="order-tell" href="tel:<%= order.get('phone') %>">
+                        <i class="iconfont icon-phone2"></i> 拨打电话
+                    </a>
+                </div>
+                <div class="user-info ui-border-tb">
+                    <div class="user-info-tip">
+                        乘车人
+                    </div>
+                    <div class="user-info-content">
+                        <%= order.get('pname') %><br>
+                        <%= order.get('psid') %><br>
+                        <%= order.get('ptel') %>
+                    </div>
+                </div>
+                <div class="ui-btn-wrap">
+                    <button class="ui-btn-lg" id="orderDelete">
+                        取消预定
+                    </button>
+                </div>
+            </script>
+        </section>
+            
+            
+            
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/zepto/zepto.js"></script>
@@ -289,6 +509,8 @@
     <script src="scripts/views/Order.js"></script>
     <script src="scripts/model/Ticket.js"></script>
     <script src="scripts/views/Select.js"></script>
+    <script src="scripts/views/Book.js"></script>
+    <script src="scripts/views/detail.js"></script>
     <!-- endbuild -->
   </body>
 </html>

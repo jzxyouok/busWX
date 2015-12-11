@@ -1,7 +1,9 @@
 App.Models.TicketModel = Backbone.Model.extend({
     defaults: {
-        start: {name:'',date:''},
-        end: {name:'',date:''},
+        startStation: '',
+        startTime:'',
+        endStation: '',
+        endTime:'',
 		price:0.00,
         count:0
     }

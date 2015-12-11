@@ -10,21 +10,22 @@ App.Views.StationView = Backbone.View.extend({
         'click #selectSub': 'selectSub',
     },
     initialize: function(){
+        if(App.tickets)App.tickets=null;
         this.render();
     },
 
     render: function() {
-        var stationList = new App.Collections.StationList;
+        App.stationList = new App.Collections.StationList;
         
         
-        stationList.add(new App.Models.StationModel({'name':'成都校区'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区1'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区2'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区3'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区4'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区5'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区6'}));
-        stationList.add(new App.Models.StationModel({'name':'峨眉校区7'}));
+        App.stationList.add(new App.Models.StationModel({'name':'成都校区'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区1'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区2'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区3'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区4'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区5'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区6'}));
+        App.stationList.add(new App.Models.StationModel({'name':'峨眉校区7'}));
         /*stationList.fetch({url:'/getStations/',success:function(collection,response){  
             collection.each(function(station){
                 alert(station.get('name'));  
@@ -40,22 +41,22 @@ App.Views.StationView = Backbone.View.extend({
         //this.el.html(template);
         //界面
         var time = new Date();
-        this.seleteData = {
+        this.selectData = {
             date:{date:time.Format('yyyy-MM-dd'),show:time.Format("MM月d日 今天 ") + time.CHWeek()},
-            station:[{name:stationList.models[0].get('name')},{name:stationList.models[1].get('name')}]
+            station:[{name:App.stationList.models[0].get('name')},{name:App.stationList.models[1].get('name')}]
         };
-        $(".select-form").html(template(this.seleteData));
+        $(".select-form").html(template(App.selectData?App.selectData:this.selectData));
         
         //下拉框
-        this.selectList = _.template($("#selectStationTemplate").html())({list:stationList});
+        this.selectList = _.template($("#selectStationTemplate").html())({list:App.stationList});
         App.loading();
     },
 
     startStation: function(){
         var that = this;
         $('#selectBox').removeClass('hide fadeOut').addClass('show fadeIn').find('.select-list').html(this.selectList).find('li').click(function(){
-            that.seleteData.station[0].name = $(this).attr('data-real');
-            $('#selectStart .select-station').html(that.seleteData.station[0].name);
+            that.selectData.station[0].name = $(this).attr('data-real');
+            $('#selectStart .select-station').html(that.selectData.station[0].name);
             $('#selectBox').removeClass('show fadeIn').addClass('fadeOut');
         });
 
@@ -63,17 +64,17 @@ App.Views.StationView = Backbone.View.extend({
     endStation:function(){
         var that = this;
         $('#selectBox').removeClass('hide fadeOut').addClass('show fadeIn').find('.select-list').html(this.selectList).find('li').click(function(){
-            that.seleteData.station[1].name = $(this).attr('data-real');
-            $('#selectEnd .select-station').html(that.seleteData.station[1].name);
+            that.selectData.station[1].name = $(this).attr('data-real');
+            $('#selectEnd .select-station').html(that.selectData.station[1].name);
             $('#selectBox').removeClass('show fadeIn').addClass('fadeOut');
         });
     },
     changeStation:function(){
-        var that = this.seleteData.station[0];
-        this.seleteData.station[0] = this.seleteData.station[1];
-        this.seleteData.station[1] = that;
-        $('#selectStart .select-station').html(this.seleteData.station[0].name);
-        $('#selectEnd .select-station').html(this.seleteData.station[1].name);
+        var that = this.selectData.station[0];
+        this.selectData.station[0] = this.selectData.station[1];
+        this.selectData.station[1] = that;
+        $('#selectStart .select-station').html(this.selectData.station[0].name);
+        $('#selectEnd .select-station').html(this.selectData.station[1].name);
         /*$('.select-station').addClass('animated bounceOut').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
             
             $('.select-station').removeClass('bounceOut').addClass('bounceIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
@@ -92,15 +93,26 @@ App.Views.StationView = Backbone.View.extend({
             html += ' ' +  time.CHWeek() + '</a></li>';
         }
         $('#selectBox').removeClass('hide fadeOut').addClass('show fadeIn').find('.select-list').html(html).find('li').click(function(){
-            that.seleteData.date.date = $(this).attr('data-real');
-            that.seleteData.date.show = $(this).text();
+            that.selectData.date.date = $(this).attr('data-real');
+            that.selectData.date.show = $(this).text();
             $('#selectDate .ui-panel-title-tips').html($(this).text());
             $('#selectBox').removeClass('show fadeIn').addClass('fadeOut');
         });
     },
     selectSub:function(){
-        console.log(this.seleteData);
-        App.seleteData = this.seleteData;
-        location.href='#select';
+        console.log(this.selectData);
+        
+        if(this.selectData.station[0].name == this.selectData.station[1].name)
+        {
+            $.tips({
+                content:'始发站和终点站不可以相同',
+                stayTime:2000,
+                type:"warn"
+            })
+            return;
+        }else{
+            App.selectData = this.selectData;
+            location.href='#select';
+        }
     }
 });

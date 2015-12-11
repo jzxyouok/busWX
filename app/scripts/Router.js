@@ -5,6 +5,8 @@ App.Routers.AppRouter = Backbone.Router.extend({
         'order':'order',
         'person':'person',
         'select':'select',
+        'book':'book',
+        'detail':'detail',
         '*error' : 'index'  
     },  
     index : function() { 
@@ -18,7 +20,12 @@ App.Routers.AppRouter = Backbone.Router.extend({
     order : function() { 
         App.loading(true);
         App.zIndex ++;
-        $('section.show').removeClass('show');
+        if($('section.show').get(0) && $('section.show').get(0).id == 'detail'){
+            App.zIndex -= 2;
+            $('section.show').removeClass('fadeInRight').addClass('fadeOutRight');
+        }
+        else
+            $('section.show').removeClass('show');
         $('#myMenu').removeClass('fadeIn').addClass('fadeOut');
         $('#order').removeClass('hide fadeOutRight').addClass('show fadeInRight').css('zIndex',App.zIndex);
         var orderView = new App.Views.OrderView();
@@ -37,7 +44,40 @@ App.Routers.AppRouter = Backbone.Router.extend({
         $('#myMenu').removeClass('fadeIn').addClass('fadeOut');
         $('section.show').removeClass('fadeInRight').addClass('fadeOutRight');
         $('#selectResult').removeClass('hide fadeOutRight').addClass('show fadeInRight').css('zIndex',App.zIndex);
-        var selectView = new App.Views.SelectView();
+        if(App.selectData)
+            var selectView = new App.Views.SelectView();
+        else
+            location.href='#index';
+    }, 
+    book : function() { 
+        App.loading(true); 
+        if(App.zIndex == 2){
+            $('section.show').removeClass('show');
+        }else 
+            $('section.show').removeClass('fadeInRight').addClass('fadeOutRight');
+        App.zIndex = 3;
+        
+        $('#myMenu').removeClass('fadeIn').addClass('fadeOut');
+        $('#book').removeClass('hide fadeOutRight').addClass('show fadeInRight').css('zIndex',App.zIndex);
+        if(App.ticket)
+            var bookView = new App.Views.BookView();
+        else
+            location.href='#select';
+    }, 
+    detail : function() { 
+        App.loading(); 
+        App.zIndex ++;
+        if($('section.show').get(0) && $('section.show').get(0).id == 'book'){
+            App.zIndex ++;
+        }
+        $('section.show').removeClass('show');
+        $('#myMenu').removeClass('fadeIn').addClass('fadeOut');
+        $('#detail').removeClass('hide fadeOutRight').addClass('show fadeInRight').css('zIndex',App.zIndex);
+        if(App.order)
+            var detailView = new App.Views.DetailView();
+        else
+            location.href='#index';
+        
     }, 
     renderError : function(error) {  
         console.log('URL错误, 错误信息: ' + error);  
@@ -49,5 +89,6 @@ $('section').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend
 });
 $(function(){
     new App.Routers.AppRouter();  
-    Backbone.history.start();  
+    Backbone.history.start();
+    location.href='#';
 });

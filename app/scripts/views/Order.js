@@ -7,39 +7,39 @@ App.Views.OrderView = Backbone.View.extend({
 		this.render();
 	},
 	render: function() {
-		var orders = new App.Collections.OrderList;
-		orders.add(new App.Models.OrderModel({
-			start: '成都校区',end: '峨眉校区',date: '2015-12-12 06:12',price:8.88,status:0
+		App.orders = new App.Collections.OrderList;
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '成都校区',endStation: '峨眉校区',date: '2015-12-15 06:12',price:8.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-11 18:12',price:18.88,status:1
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-14 18:12',price:18.88,status:1,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '成都校区',end: '峨眉校区',date: '2015-12-10 06:12',price:8.88,status:2
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '成都校区',endStation: '峨眉校区',date: '2015-12-13 06:12',price:8.88,status:2,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-09 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-12 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-08 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-11 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-07 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-10 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-06 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-09 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-05 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-08 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-04 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-07 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-03 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-06 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
-		orders.add(new App.Models.OrderModel({
-			start: '峨眉校区',end: '成都校区',date: '2015-12-02 18:12',price:2.88,status:0
+		App.orders.add(new App.Models.OrderModel({
+			startStation: '峨眉校区',endStation: '成都校区',date: '2015-12-05 18:12',price:2.88,status:0,company:'123后勤宝',code:'E83838213',number:'123215123213',pname:'王同学',psid:'12110013222',ptel:'156587215464'
 		}));
 		/*orders.fetch({url:'/getTickets/',success:function(collection,response){  
             collection.each(function(station){
@@ -55,14 +55,15 @@ App.Views.OrderView = Backbone.View.extend({
         //加载模板到对应的el属性中
         //this.el.html(template);
         //界面
-        $("#orderList").html(template({list:orders.models})).height(document.documentElement.clientHeight - 45);
+        $("#orderList").html(template({list:App.orders.models})).height(document.documentElement.clientHeight - 45);
 		new fz.Scroll('#orderList', {
 			scrollY: true
 		});	
         App.loading();
     },
 	orderDetail:function(){
-		alert(1111);
+		App.order = App.orders.models[parseInt($(event.target).closest('li').attr('data-index'))];
+		location.href="#detail";
 		
 	}
 });

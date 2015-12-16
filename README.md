@@ -1,7 +1,7 @@
 # busWX
-<h3>基于backbone和frozenUI的校车预订系统移动前端,练习用<h3>
+<h3>基于backbone和frozenUI的校车预订系统移动前端,练习用</h3>
 
-<p>单页应用，全程无刷新，<del><small>使用侧滑动画切换</small></del>侧滑动画在手机浏览器上兼容性极差，已经舍弃，改为渐显fadeIn</p>
+<p>单页应用，全程无刷新，<del>使用侧滑动画切换</del>侧滑动画在手机浏览器上兼容性极差，已经舍弃，改为渐显fadeIn</p>
 <p>基于yeoman脚手架webapp（Sass）</p>
 <p>手动引入了backbone、animate.css、frozenUI</p>
 <p>作为backbone入门练习例子，为将来他人学习使用吧。</p>

@@ -8,7 +8,7 @@
 <br>
 <p>12.16</p>
 <p>项目基本结束，数据库在本地，不能上传<p>
-<p><a href="http://120.26.48.150/ndsite/buswx">demo请点击</a></p>
+<p><a href="http://120.26.48.150/ndsite/buswx" target="_blank">demo请点击</a></p>
 <br>
 <p>12.10第一次上传，命名0.1版本吧</p>
 <p>首页 选择始发站，终点站和时间</p>

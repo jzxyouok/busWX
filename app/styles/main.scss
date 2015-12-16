@@ -25,6 +25,10 @@ section.animated{
 	background-color: #228feb;
 }
 #myMenu{
+	&.animated{
+		-webkit-animation-duration: .5s;
+		animation-duration: .5s;
+	}
     position: fixed;
     top: 44px;
 	bottom:0;
@@ -67,10 +71,6 @@ section.animated{
 	}
 	&.hide{
 		display:none;
-	}
-	&.fadeOut{
-		-webkit-animation-duration: .3s;
-    	animation-duration: .3s;
 	}
 }
 .ui-header{
@@ -378,9 +378,6 @@ section.animated{
 		padding:10px;
 		.user-info-tip{
 			width:95px;
-		}
-		.user-info-content{
-			
 		}
 	}
 	.ui-btn-lg{
